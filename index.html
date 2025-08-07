@@ -14,29 +14,32 @@
       margin: 0;
       padding: 0;
     }
-    h2 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin: 32px auto 8px auto;
-      text-align: center;
-      color: #444;
-      letter-spacing: 0.03em;
-    }
     .section {
       max-width: 520px;
       margin: 0 auto;
       padding: 0 12px 24px 12px;
     }
     .app-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 28px;
-      max-width: 480px;
-      margin: 16px auto 0 auto;
       padding: 20px;
+      margin: 16px auto 0 auto;
       background: #fff;
       border-radius: 36px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.09), 0 1.5px 8px rgba(0,0,0,0.05);
+      max-width: 480px;
+    }
+    .grid-header {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      color: #444;
+      letter-spacing: 0.03em;
+      width: 100%;
+    }
+    .app-icons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 28px;
     }
     .app-icon {
       display: flex;
@@ -80,41 +83,37 @@
       margin-top: 4px;
       opacity: 0.85;
     }
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #181920;
-    color: #eee;
-  }
-  .section {
-    background: none;
-  }
-  .app-grid {
-    background: #232536;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-  }
-  .app-icon {
-    color: #eee;
-  }
-  .icon-img {
-    background: linear-gradient(180deg,#232536 0,#181920 100%);
-    border: 1px solid #333;
-  }
-  .icon-label {
-    color: #f5f5f5;
-    text-shadow: 0 1px 2px #232536;
-  }
-  .coming-soon {
-    color: #ffd580;
-  }
-  h2 {
-    color: #ffd580;
-  }
-}
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #23262b;
+        color: #eee;
+      }
+      .app-grid {
+        background: #2c2f38;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 1.5px 8px rgba(0,0,0,0.12);
+      }
+      .grid-header {
+        color: #ffd580;
+      }
+      .app-icon {
+        color: #ffd580;
+      }
+      .icon-img {
+        background: linear-gradient(180deg,#fff 0,#23262b 100%);
+        border: 1px solid #444;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+      }
+      .icon-label {
+        color: #fff;
+        text-shadow: 0 1px 2px #444;
+      }
+      .coming-soon {
+        color: #ffd580;
+      }
+    }
   </style>
 </head>
 <body>
-
-<!-- 2D Lists to edit -->
 <script>
 const versionsData = [
   ["icon.png", "Beta 1.1", "Beta1.1/index.html"],
@@ -129,19 +128,7 @@ const supportData = [
   // Add more like this:
   // ["path_or_url_to_icon", "Label", ""]
 ];
-</script>
 
-<div class="section">
-  <h2>Versions</h2>
-  <div class="app-grid" id="versionsGrid"></div>
-</div>
-
-<div class="section">
-  <h2>Support</h2>
-  <div class="app-grid" id="supportGrid"></div>
-</div>
-
-<script>
 function renderIcons(gridId, data, hasLinks, openInNewTab) {
   const grid = document.getElementById(gridId);
   grid.innerHTML = "";
@@ -171,8 +158,25 @@ function renderIcons(gridId, data, hasLinks, openInNewTab) {
     grid.appendChild(item);
   });
 }
+</script>
+
+<div class="section">
+  <div class="app-grid">
+    <div class="grid-header">Versions</div>
+    <div class="app-icons" id="versionsGrid"></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="app-grid">
+    <div class="grid-header">Support</div>
+    <div class="app-icons" id="supportGrid"></div>
+  </div>
+</div>
+
+<script>
 renderIcons('versionsGrid', versionsData, true, false);
-renderIcons('supportGrid', supportData, true, true);
+renderIcons('supportGrid', supportData, false, false);
 </script>
 </body>
 </html>
