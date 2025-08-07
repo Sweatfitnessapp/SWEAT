@@ -1,0 +1,9 @@
+{
+  "name": "SWEAT Fitness App",
+  "short_name": "SWEAT",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ff4081",
+  "description": "Your fitness companion for workouts and tracking."
+}
